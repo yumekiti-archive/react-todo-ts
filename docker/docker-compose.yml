@@ -24,14 +24,13 @@ services:
         ports:
             - "3000:3000"
 
-
     express:
         build: ./express
         container_name: express
         volumes:
             - ../api:/mnt/api/
         working_dir: /mnt/api/
-        command: sh -c "npm start"
+        tty: true
         ports:
             - "5000:5000"
 

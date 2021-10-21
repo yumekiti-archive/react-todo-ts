@@ -1,9 +1,13 @@
 var express = require('express');
 var router = express.Router();
+var database = require('./../database/connection');
 
-/* GET home page. */
-router.get('/api', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+// mysqlに接続する。
+database;
+
+/* GET users listing. */
+router.get('/', function(req, res, next) {
+    res.send('hello, world!');
 });
 
 module.exports = router;

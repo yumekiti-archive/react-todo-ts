@@ -1,5 +1,11 @@
 dc := user=$(USER) docker-compose -f ./docker/docker-compose.yml
 
+.PHONY: init
+init:
+	$(dc) up -d --build
+	bash ./docker/mysql/sql.sh
+	$(dc) exec -d express /bin/sh -c "npm start"
+
 .PHONY: up
 up:
 	$(dc) up -d --build
@@ -31,3 +37,7 @@ api:
 .PHONY: app
 app:
 	$(dc) exec react /bin/sh
+
+.PHONY: start
+start:
+	$(dc) exec express /bin/sh -c "npm start"
