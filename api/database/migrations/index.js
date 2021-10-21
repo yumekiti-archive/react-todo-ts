@@ -1,8 +1,7 @@
 const user = require('./user');
 
-const migrations = (connection) => {
-    if (connection.query === null) return;
+const table = (connection) => {
     connection.query(user.table);
 }
 
-exports.migrations = migrations;
+exports.table = table;

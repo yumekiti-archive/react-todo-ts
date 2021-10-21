@@ -13,5 +13,5 @@ const connection = mysql.createConnection({
 
 connection.connect(() => {
     // connection.query(user.table);
-    migrations.migrations(connection)
+    migrations.table(connection)
 });
