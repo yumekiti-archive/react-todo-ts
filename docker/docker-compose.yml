@@ -31,7 +31,6 @@ services:
             - ../api:/mnt/api/
         working_dir: /mnt/api/
         tty: true
-        command: sh -c "npm install"
         ports:
             - "5000:5000"
 

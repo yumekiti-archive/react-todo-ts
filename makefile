@@ -4,7 +4,7 @@ dc := user=$(USER) docker-compose -f ./docker/docker-compose.yml
 init:
 	$(dc) up -d --build
 	bash ./docker/mysql/sql.sh
-	$(dc) exec -d express /bin/sh -c "npm start"
+	$(dc) exec -d express /bin/sh -c "npm install && npm start"
 
 .PHONY: up
 up:
