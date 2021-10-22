@@ -1,7 +1,5 @@
 const user = require('./user');
 
-const table = (connection) => {
+module.exports = (connection) => {
     connection.query(user.table);
 }
-
-exports.table = table;

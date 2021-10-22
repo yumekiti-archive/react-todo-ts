@@ -20,7 +20,7 @@ services:
         volumes:
             - ../app:/mnt/app/
         working_dir: /mnt/app/
-        command: sh -c "npm run start"
+        command: sh -c "npm install && npm run start"
         ports:
             - "3000:3000"
 
@@ -31,6 +31,7 @@ services:
             - ../api:/mnt/api/
         working_dir: /mnt/api/
         tty: true
+        command: sh -c "npm install"
         ports:
             - "5000:5000"
 

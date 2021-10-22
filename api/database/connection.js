@@ -1,7 +1,7 @@
 // get the client
 const mysql = require('mysql2');
 
-const migrations = require('./migrations/index');
+const migrations = require('./index');
 
 // create the connection to database
 const connection = mysql.createConnection({
@@ -13,5 +13,5 @@ const connection = mysql.createConnection({
 
 connection.connect(() => {
     // connection.query(user.table);
-    migrations.table(connection)
+    migrations(connection)
 });
