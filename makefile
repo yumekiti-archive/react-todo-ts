@@ -41,3 +41,7 @@ app:
 .PHONY: start
 start:
 	$(dc) exec express /bin/sh -c "npm start"
+
+.PHONY: migrate
+migrate:
+	$(dc) exec express npx prisma migrate dev

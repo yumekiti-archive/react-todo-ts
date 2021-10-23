@@ -1,13 +1,17 @@
 var express = require('express');
+import { PrismaClient } from '@prisma/client'
+
+const prisma = new PrismaClient()
 var router = express.Router();
-var database = require('./../database/connection');
 
-// mysqlに接続する。
-database;
-
-/* GET users listing. */
+/* GET home page. */
 router.get('/', function(req, res, next) {
-    res.send('hello, world!');
+  // Creating a new record
+  prisma.user.create({
+    name: "Alice",
+    email: "alice@prisma.io"
+  })
+  res.render('index', { title: 'Express' });
 });
 
 module.exports = router;

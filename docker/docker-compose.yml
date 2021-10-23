@@ -14,15 +14,15 @@ services:
         volumes:
             - ./mysql/my.cnf:/etc/mysql/my.cnf
 
-    react:
-        build: ./react/
-        container_name: react
-        volumes:
-            - ../app:/mnt/app/
-        working_dir: /mnt/app/
-        command: sh -c "npm install && npm run start"
-        ports:
-            - "3000:3000"
+    # react:
+    #     build: ./react/
+    #     container_name: react
+    #     volumes:
+    #         - ../app:/mnt/app/
+    #     working_dir: /mnt/app/
+    #     command: sh -c "npm install && npm run start"
+    #     ports:
+    #         - "3000:3000"
 
     express:
         build: ./express
@@ -41,5 +41,5 @@ services:
             - 8080:80
         volumes:
             - ./nginx/conf.d/:/etc/nginx/conf.d/
-            - ../app/:/var/www/
+            # - ../app/:/var/www/
         working_dir: /var/www/
