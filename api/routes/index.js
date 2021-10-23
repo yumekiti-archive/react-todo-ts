@@ -1,17 +1,20 @@
 var express = require('express');
-import { PrismaClient } from '@prisma/client'
+const { PrismaClient } = require('@prisma/client');
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 var router = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  // Creating a new record
-  prisma.user.create({
-    name: "Alice",
-    email: "alice@prisma.io"
+router.get('/', async (req, res, next) => {
+
+  const result  = await prisma.user.create({
+    data: {
+      name: 'Alice',
+      email: 'alice@prisma.io',
+    },
   })
-  res.render('index', { title: 'Express' });
+
+  res.json(result);
 });
 
 module.exports = router;
