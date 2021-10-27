@@ -4,7 +4,6 @@ dc := user=$(USER) docker-compose -f ./docker/docker-compose.yml
 init:
 	$(dc) up -d --build
 	bash ./docker/mysql/sql.sh
-	$(dc) exec -d express /bin/sh -c "npm install && npm start"
 
 .PHONY: up
 up:
@@ -44,4 +43,9 @@ start:
 
 .PHONY: migrate
 migrate:
+	cp ./api/.env.example ./api/.env
 	$(dc) exec express npx prisma migrate dev
+
+.PHONY: generate
+generate:
+	$(dc) exec express npx prisma generate
