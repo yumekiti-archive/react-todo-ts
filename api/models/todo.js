@@ -5,6 +5,7 @@ const prisma = new PrismaClient();
 const todo  = {
     async show(){
         const result = await prisma.todo.findMany();
+
         return result;
     },
 
@@ -16,6 +17,7 @@ const todo  = {
                 body,
             },
         });
+
         return result;
     },
 
@@ -23,6 +25,7 @@ const todo  = {
         const result = await prisma.user.delete({
             where: { id },
         });
+
         return result;
     }
 }

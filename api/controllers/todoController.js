@@ -10,21 +10,27 @@ const todoController = {
         res.json(result);
     },
 
-    async store(req, res, next){
+    async create(req, res, next){
         const formData = req.body;
         const result = await todo.create(formData);
 
         res.json(result);
     },
 
-    async test(req, res, next){
+    async delete(req, res, next){
+        const formData = req.body;
+        const result = await todo.delete(formData.id);
 
+        res.json(result);
+    },
+
+    async test(req, res, next){
         const result  = await prisma.todo.create({
             data: {
                 body: 'test body',
             },
         })
-    
+
         res.json(result);
     }
 }
