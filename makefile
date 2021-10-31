@@ -2,6 +2,7 @@ dc := user=$(USER) docker-compose -f ./docker/docker-compose.yml
 
 .PHONY: init
 init:
+	cp ./api/.env.example ./api/.env
 	$(dc) up -d --build
 	bash ./docker/mysql/sql.sh
 
