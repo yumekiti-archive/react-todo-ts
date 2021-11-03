@@ -2,7 +2,7 @@ const { PrismaClient } = require('@prisma/client');
 
 const prisma = new PrismaClient();
 
-const todo  = {
+const todo = {
     async show(){
         const result = await prisma.todo.findMany();
 
