@@ -4,6 +4,7 @@ dc := user=$(USER) docker-compose -f ./docker/docker-compose.yml
 init:
 	cp ./api/.env.example ./api/.env
 	$(dc) up -d --build
+	make migrate
 	bash ./docker/mysql/sql.sh
 
 .PHONY: up

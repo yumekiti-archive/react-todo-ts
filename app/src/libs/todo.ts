@@ -3,15 +3,15 @@ import { Todo } from "../interfaces/index"
 
 // 取得
 export const getTodos = () => {
-    return client.get("/api/todos")
+    return client.get("/todos")
 }
 
 // 作成
 export const createTodo = (data: Todo) => {
-    return client.post("/api/todos", data)
+    return client.post("/todos", data)
 }
 
 // 削除
 export const deleteTodo = (id: number) => {
-    return client.delete(`/api/todos`)
+    return client.delete("/todos")
 }

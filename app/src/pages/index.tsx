@@ -1,8 +1,12 @@
-import { TodoList } from "../components/TodoList";
+import { TodoItem } from "../components/TodoItem";
+import { TodoForm } from "../components/TodoForm";
 
 const index = () => {
     return(
-        <TodoList />
+        <div>
+            <TodoForm />
+            <TodoItem id={1} body={'asd'} />
+        </div>
     )
 };
 
