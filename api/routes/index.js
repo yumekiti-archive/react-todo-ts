@@ -5,7 +5,7 @@ var router = express.Router();
 
 router.get('/', todoController.index);
 router.post('/', todoController.create);
-router.delete('/', todoController.delete);
+router.delete('/:id', todoController.delete);
 router.get('/test', todoController.test);
 
 module.exports = router;
