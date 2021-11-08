@@ -22,7 +22,7 @@ const todo = {
     },
 
     async delete(id){
-        const result = await prisma.user.delete({
+        const result = await prisma.todo.delete({
             where: { id },
         });
 

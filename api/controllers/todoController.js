@@ -19,7 +19,7 @@ const todoController = {
 
     async delete(req, res, next){
         const { id } = req.params;
-        const result = await todo.delete(id);
+        const result = await todo.delete(Number(id));
 
         res.json(result);
     },
