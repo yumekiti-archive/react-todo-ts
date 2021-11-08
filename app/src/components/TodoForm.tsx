@@ -29,7 +29,7 @@ export const TodoForm = () => {
     return (
         <Grid container justifyContent="center" alignItems="center">
             <Grid item xs={10} margin={3} style={{ display: "flex" }}>
-                <TextField label="Todo" style={{ width: "90%" }} value={body} onChange={bodyChange} />
+                <TextField label="Todo" style={{ width: "90%" }} value={body} onChange={bodyChange} onKeyPress={e => {if (e.key == 'Enter') { setTodo() } }} />
                 <Button variant="contained" style={{ width: "10%" }} onClick={() => setTodo() }>ADD</Button>
             </Grid>
         </Grid>

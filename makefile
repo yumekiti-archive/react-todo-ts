@@ -9,6 +9,7 @@ init:
 .PHONY: up
 up:
 	$(dc) up -d --build
+	bash ./docker/mysql/sql.sh
 
 .PHONY: down
 down:
@@ -16,7 +17,9 @@ down:
 
 .PHONY: restart
 restart:
-	$(dc) restart
+	make down
+	make up
+	make migrate
 
 .PHONY: rm
 rm:
