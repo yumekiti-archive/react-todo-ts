@@ -18,21 +18,14 @@ $ express api --view=ejs
 + app.use('/api', indexRouter);
 ```
 
-### prisma生成
+### prisma作成
 ```shell
 $ cd api
 $ npx prisma init
 ```
 
-### api/prisma/schema.prisma
-一番下に以下追記
-
-```typescript
-model Todo {
-  id    Int     @id @default(autoincrement())
-  body  String?
-}
-```
+### prisma書く
+./api/prisma/schema.prisma
 
 ### .env編集
 ```
@@ -49,81 +42,39 @@ $ npx prisma generate
 $ prisma migrate dev
 ```
 
-## model書く
-```typescript
-const { PrismaClient } = require('@prisma/client');
+### model書く
+./api/models/todo.js
 
-const prisma = new PrismaClient();
+### controller書く
+./api/controllers/todoControllers.js
 
-const todo  = {
-    async show(){
-        const result = await prisma.todo.findMany();
+### routes書く
+./api/routes/index.js
 
-        return result;
-    },
+## app作るうう
 
-    async create(form){
-        const body = form.body;
-
-        const result = await prisma.todo.create({
-            data: {
-                body,
-            },
-        });
-
-        return result;
-    },
-
-    async delete(id){
-        const result = await prisma.user.delete({
-            where: { id },
-        });
-
-        return result;
-    }
-}
-
-module.exports = todo;
+### react作成
+```shell
+$ npx create-react-app app --template typescript
 ```
 
-## controller書く
-```script
-const todo = require("../models/todo");
-const { PrismaClient } = require('@prisma/client');
-
-const prisma = new PrismaClient();
-
-const todoController = {
-    async index(req, res, next){
-        const result = await todo.show();
-
-        res.json(result);
-    },
-
-    async create(req, res, next){
-        const formData = req.body;
-        const result = await todo.create(formData);
-
-        res.json(result);
-    },
-
-    async delete(req, res, next){
-        const formData = req.body;
-        const result = await todo.delete(formData.id);
-
-        res.json(result);
-    },
-
-    async test(req, res, next){
-        const result  = await prisma.todo.create({
-            data: {
-                body: 'test body',
-            },
-        })
-
-        res.json(result);
-    }
-}
-
-module.exports = todoController;
+### ディレクトリ作成
 ```
+./app/src/components
+./app/src/interfaces
+./app/src/libs
+```
+
+### interfaces書く
+./app/src/interfaces/index.ts
+
+### libs書く
+./app/src/libs/client.ts
+./app/src/libs/todo.ts
+
+### components書く
+./app/src/components/TodoForm.tsx
+./app/src/components/TodoItem.tsx
+./app/src/components/TodoList.tsx
+
+完成。。
