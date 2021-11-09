@@ -1,4 +1,4 @@
-import React, { VFC } from 'react';
+import React, { VFC, useState } from 'react';
 import { Card, CardContent, Typography, Grid, Button } from '@mui/material';
 import { Todo } from "../interfaces/index";
 import { deleteTodo } from "../libs/todo";
@@ -10,6 +10,8 @@ interface TodoItemProps {
 }
 
 export const TodoItem: VFC<TodoItemProps> = ({ todo, setTodos }) => {
+    const [clicked, setclicked] = React.useState(true);
+
     const [spring, api] = useSpring(() => {
         return {
             to: [{ opacity: 1 }],
@@ -18,6 +20,8 @@ export const TodoItem: VFC<TodoItemProps> = ({ todo, setTodos }) => {
     });
 
     const todoDelete = (id: number) => {
+        setclicked(false);
+
         api.start({
             to: [{ opacity: 0 }],
             from: { opacity: 1 },
@@ -36,6 +40,8 @@ export const TodoItem: VFC<TodoItemProps> = ({ todo, setTodos }) => {
                         to: [{ opacity: 1 }],
                         from: { opacity: 0 },
                     })
+
+                    setclicked(true);
                 } catch (err) {
                     console.log(err)
                 }
@@ -52,6 +58,7 @@ export const TodoItem: VFC<TodoItemProps> = ({ todo, setTodos }) => {
                             {todo.id} : {todo.body}
                         </Typography>
                         <Button
+                            disabled={!clicked}
                             color="error"
                             variant="contained"
                             style={{ marginLeft: "auto" }}
