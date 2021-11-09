@@ -1,4 +1,4 @@
-import React, { VFC, useState } from 'react';
+import React, { VFC } from 'react';
 import { Card, CardContent, Typography, Grid, Button } from '@mui/material';
 import { Todo } from "../interfaces/index";
 import { deleteTodo } from "../libs/todo";
@@ -17,28 +17,29 @@ export const TodoItem: VFC<TodoItemProps> = ({ todo, setTodos }) => {
         }
     });
 
-    const todoDelete = async (id: number) => {
+    const todoDelete = (id: number) => {
         api.start({
             to: [{ opacity: 0 }],
-            from: { opacity: 1 }
-        });
+            from: { opacity: 1 },
+            onRest: async () => {
+                try {
+                    const res = await deleteTodo(id)
+                    console.log(res)
 
-        try {
-            const res = await deleteTodo(id)
-            console.log(res)
+                    if (res?.status === 200) {
+                        setTodos((prev: Todo[]) => prev.filter((todo: Todo) => todo.id !== id))
+                    } else {
+                        console.log(res.data.message)
+                    }
 
-            if (res?.status === 200) {
-                setTodos((prev: Todo[]) => prev.filter((todo: Todo) => todo.id !== id))
-            } else {
-                console.log(res.data.message)
+                    api.start({
+                        to: [{ opacity: 1 }],
+                        from: { opacity: 0 },
+                    })
+                } catch (err) {
+                    console.log(err)
+                }
             }
-        } catch (err) {
-            console.log(err)
-        }
-
-        api.start({
-            to: [{ opacity: 1 }],
-            from: { opacity: 0 }
         });
     }
 
