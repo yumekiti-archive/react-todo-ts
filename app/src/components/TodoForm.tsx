@@ -16,6 +16,7 @@ export const TodoForm: VFC<TodoFormProps> = ({ todos, setTodos }) => {
     };
 
     const setTodo = async () => {
+
         const data: Todo = {
             body: body
         }
