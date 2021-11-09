@@ -10,7 +10,7 @@ interface TodoItemProps {
 }
 
 export const TodoItem: VFC<TodoItemProps> = ({ todo, setTodos }) => {
-    const [clicked, setclicked] = React.useState(true);
+    const [clicked, setclicked] = useState(true);
 
     const [spring, api] = useSpring(() => {
         return {
